@@ -1,0 +1,32 @@
+#
+g1.k4t2w_11111:53 {
+  # 绑定lo网口，这样启动是静默的，否则默认绑定0.0.0.0会弹出windows防火墙
+#  bind 192.168.2.5 你的ip
+    bind 127.0.0.1
+  # hosts插件，自定义域名的解析，解析的域名少就直接用hosts插件完成需求，如果有大量自定义域名解析建议用file插件使用 符合RFC 1035规范的DNS解析配置文件
+
+  
+  etcd  {
+    endpoint http://127.0.0.1:2379
+    #endpoint http://192.168.168.8:2379
+    # 可以多行
+    
+  }
+  loadbalance
+
+  
+  # 将走到这一步的所有解析请求转发给192.168.10.1，这里可以配置多个地址，转发时会同时对多个地址发起转发
+  #forward . 192.168.2.1:53
+ 
+  # 重载hosts配置 windows下不支持
+  # reload 10s
+ 
+  # 输出错误
+  errors
+ 
+  # 输出日志
+  #log . "{remote}:{port} - {>id} \"{proto} Request: {name} {type} {rsize} {rcode}\""
+  
+  # 自动加载配置文件的间隔时间
+  #reload 1m  
+}

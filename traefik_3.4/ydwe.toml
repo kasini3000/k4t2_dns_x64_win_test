@@ -1,0 +1,61 @@
+# Global configuration
+debug = true
+logLevel = "DEBUG"
+#filePath = "errorlog.txt"
+
+[accessLog]
+#filePath = "accesslog.txt"
+
+
+
+# Web UI
+[api]
+  dashboard = true
+  #debug = true
+  insecure = true
+
+
+#[[tls.certificates]]
+#  certFile = "a:/traefik_v2.9.10/test123.cert"
+#  keyFile = "a:/traefik_v2.9.10/test123.key"
+
+
+#[http.routers.my-api]
+#  rule = "PathPrefix(`/api`)"
+#  service = "dashboard@internal"
+  #middlewares = "my-api"
+#  entryPoints = "api"
+  
+#[http.middlewares.my-api.ipWhiteList]
+#    sourceRange = ["127.0.0.1/32", "192.168.168.231"]  
+  
+  
+  
+#
+#[http.middlewares.auth.basicAuth]
+#  users = [
+#    "test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/",
+#    "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0",
+#  ]
+
+# Entry points
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+  [entryPoints.websecure]
+    address = ":443"
+  #[entryPoints.api]
+  #  address = ":8080"    
+
+
+# Providers
+[providers]
+  [providers.file]
+  directory = "a:/traefik_v3.0/config"
+  watch = true
+
+#[providers.etcd]
+#  endpoints = "192.168.168.231:2379"
+
+[serversTransport]
+  insecureSkipVerify = true

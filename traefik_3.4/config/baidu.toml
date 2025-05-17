@@ -1,0 +1,40 @@
+# 自动载入文件扩展名必须是yaml，toml。文件名支持中文字符。扩展名改成txt，则代表删除。
+# 文件编码只支持utf8，无bom头。支持中文注释。
+[tls.stores]
+  [tls.stores.default]
+    [tls.stores.default.defaultCertificate]
+#---浏览器使用自签名证书，需要把证书，导入到【受信任的根证书颁发机构】-----
+# certmgr.msc    
+      certFile = "a:/traefik_v2.9.10/test223.cert"
+      keyFile  = "a:/traefik_v2.9.10/test223.key"
+
+[tls.options]
+  [tls.options.default]
+    minVersion = "VersionTLS12"
+#---下段从http，转https。但依赖下下段-----
+[http.routers]
+  [http.routers.my-router]
+    rule = "Host(`test223.com`) && PathPrefix(`/baidu`)"
+    middlewares = "redirect2https"
+    entryPoints = "web"
+    service = "noop@internal"
+      
+[http]
+  [http.middlewares]
+  [http.middlewares.redirect2https.redirectScheme]
+    scheme = "https"
+
+#k4t国产k8s。qq群号：722528388---2023-0428---此行不影响配置--
+#---下段从https，显式，转https网址-----
+  [http.routers.my-router-https]
+    rule = "Host(`test223.com`) && PathPrefix(`/baidu`)"
+    service = "noop@internal"  
+    entryPoints = "websecure"
+    middlewares = "https-upstream"
+  [http.routers.my-router-https.tls]
+
+  [http.middlewares.https-upstream.redirectRegex]
+    regex = "^https://test223.com/baidu$"
+    replacement = "https://www.baidu.com"
+    
+
