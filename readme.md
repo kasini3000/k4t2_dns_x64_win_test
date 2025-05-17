@@ -27,6 +27,15 @@
 
 ------
 
+# 使用方法：
+
+```
+c:
+cd \ProgramData
+mkdir k4t
+cd k4t
+git clone https://github.com/kasini3000/k4t2_dns_x64_win_test.git	
+```
 
 
 ------
