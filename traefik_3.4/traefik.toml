@@ -1,0 +1,33 @@
+# Global configuration
+debug = true
+logLevel = "DEBUG"
+#filePath = "errorlog.txt"
+
+[accessLog]
+#filePath = "accesslog.txt"
+
+
+
+# Web UI
+[api]
+  dashboard = true
+  #debug = true
+  insecure = true
+
+# Entry points
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+  [entryPoints.websecure]
+    address = ":443"  
+
+# Providers
+#[providers]
+#  [providers.file]
+#  directory = "a:/traefik_v2.9.10/config"
+#  watch = true
+
+[providers.etcd]
+  endpoints = ["192.168.11.22:2379"]
+  rootKey =  "traefik_k4t2w_11111_g1"
+
