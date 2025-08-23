@@ -66,5 +66,5 @@ git clone https://github.com/kasini3000/k4t2_dns_x64_win_test.git
 
 ## 相关网址
 
-# 手册：https://gitee.com/chuanjiao10/k4t2/docs
+# 手册：https://gitee.com/chuanjiao10/k4t2/tree/master/docs
 
