@@ -8,7 +8,7 @@ if ( ($IsWindows -eq $True) -or ($PSVersionTable.psversion.major -lt 6) ) #win
 }
 else 
 {
-  $rev = (etcdctl endpoint status --write-out="json" | ConvertFrom-Json)[0].header.revision
+  $rev = (etcdctl endpoint status --write-out="json" | ConvertFrom-Json)[0].Status.header.revision
   etcdctl compact $rev
 }   
 
